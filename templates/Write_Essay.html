@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Write Essay</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-color: OldLace;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            margin: 0 0 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #score-container {
+            margin-top: 10px;
+        }
+
+        .score {
+            margin-bottom: 5px;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .navbar a.active {
+            background-color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="http://127.0.0.1:5000/Read_Aloud">Read Aloud</a>
+        <a href="http://127.0.0.1:5000/Repeat_Sentence" >Repeat Sentence</a>
+        <a href="http://127.0.0.1:5000/Retell_Lecture" >Retell Lecture</a>
+        <a href="http://127.0.0.1:5000/Describe_Image" >Describe Image</a>
+        <a href="http://127.0.0.1:5000/Short_Answer" >Short Answer</a>
+        <a href="http://127.0.0.1:5000/Summarize_Text" >Summarize Text</a>
+        <a href="http://127.0.0.1:5000/Write_Essay" >Write Essay</a>
+        <a href="http://127.0.0.1:5000/Summarize_Spoken" >Summarize Spoken</a>
+        <a href="http://127.0.0.1:5000/Listening" >Listening</a>
+        <a href="http://127.0.0.1:5000/Speech" >Speech</a>
+        <a href="http://127.0.0.1:5000/Spelling" >Spelling</a>
+    </div>
+    <div class="container">
+        <h1>Write Essay</h1>
+        <!-- <p><strong>Passage:</strong></p> -->
+        <p id="passage">What can make learning a new foreign language unimportant? Give your example and explanation.</p>
+        <form id="summary-form">
+            <label for="summary">Write Here:</label>
+            <textarea id="summary" name="summary" rows="4" cols="50">{{ summary }}</textarea>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="score-container">
+            {% if scores %}
+            <h2>Scores</h2>
+            {% for factor, score in scores.items() %}
+            <p class="score"><strong>{{ factor }}:</strong> {{ score }}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            {% if template %}
+            <h6>Template Detected</h6>
+            {% endif %}
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

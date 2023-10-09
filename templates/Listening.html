@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listening Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: oldlace;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #score-container {
+            margin-top: 10px;
+        }
+
+        .score {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .navbar a.active {
+            background-color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="http://127.0.0.1:5000/Read_Aloud">Read Aloud</a>
+        <a href="http://127.0.0.1:5000/Repeat_Sentence" >Repeat Sentence</a>
+        <a href="http://127.0.0.1:5000/Retell_Lecture" >Retell Lecture</a>
+        <a href="http://127.0.0.1:5000/Describe_Image" >Describe Image</a>
+        <a href="http://127.0.0.1:5000/Short_Answer" >Short Answer</a>
+        <a href="http://127.0.0.1:5000/Summarize_Text" >Summarize Text</a>
+        <a href="http://127.0.0.1:5000/Write_Essay" >Write Essay</a>
+        <a href="http://127.0.0.1:5000/Summarize_Spoken" >Summarize Spoken</a>
+        <a href="http://127.0.0.1:5000/Listening" >Listening</a>
+        <a href="http://127.0.0.1:5000/Speech" >Speech</a>
+        <a href="http://127.0.0.1:5000/Spelling" >Spelling</a>
+    </div>
+    <div class="container">
+        <h1>Listening Game</h1>
+        <div>
+            <audio id="audio" controls>
+                <source src="static/{{file}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <form id="summary-form">
+            <textarea id="summary" name="summary" rows="4" cols="50"></textarea>
+            <textarea style="display: none;" id="audio" name="audio" rows="4" cols="50">{{ file }}</textarea>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="score-container">
+            {% if scores %}
+            <p class="score"><strong>{{ scores }}</strong></p>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        // JavaScript to control audio playback
+        const audio = document.getElementById('audio');
+        audio.addEventListener('play', () => {
+            playButton.textContent = '⏸️'; // Change button to pause symbol
+        });
+        audio.addEventListener('pause', () => {
+            playButton.textContent = '▶️'; // Change button to play symbol
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
